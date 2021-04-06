@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="search" @keyUp.enter="ask">
+    <div class="film" v-for="movie in movies" >
+      <ul>
+        <li>{{movie.title}}</li>
+        <li>{{movie.original_title}}</li>
+        <li>{{movie.original_language}}</li>
+        <li v-if="movie.vote_average === 0">
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </li>
+        <li v-if="movie.vote_average === 1">
+          <i class="fas fa-star"></i> 
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </li>
+        <li v-if="movie.vote_average === 2">
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </li>
+        <li v-if="movie.vote_average === 3">
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </li>
+        <li v-if="movie.vote_average === 4">
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </li>
+        <li v-if="movie.vote_average === 5">
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i> 
+        </li>
+      </ul>
+    </div>
+    <!-- <div class="no-result" v-if="movies.length == 0">
+      <h1>No Results</h1>
+    </div> -->
+    <div class="series" v-for="show in series">
+      <ul>
+        <li>{{show.name}}</li>
+        <li>{{show.original_name}}</li>
+        <li>{{show.original_language}}</li>
+        <li v-if="show.vote_average === 0">
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </li>
+        <li v-if="show.vote_average === 1">
+          <i class="fas fa-star"></i> 
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </li>
+        <li v-if="show.vote_average === 2">
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </li>
+        <li v-if="show.vote_average === 3">
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </li>
+        <li v-if="show.vote_average === 4">
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </li>
+        <li v-if="show.vote_average === 5">
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i> 
+          <i class="fas fa-star"></i> 
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- vuota -->
+  <!-- <i class="far fa-star"></i> -->
+  <!-- piena -->
+  <!-- <i class="fas fa-star"></i> -->
+  <script src="js/main.js"></script>
+</body>
+</html>
