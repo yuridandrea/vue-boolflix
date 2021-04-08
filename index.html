@@ -8,36 +8,51 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/style.css">
-  <title>Document</title>
+  <title>Boolflix</title>
 </head>
 <body>
   <div id="app">
-    <input type="text" v-model="search" @keyUp.enter="ask">
-    <div class="film" v-for="movie in movies" >
-      <ul>
-        <img v-if="movie.poster_path" :src="getPoster(movie.poster_path)" alt="">
-        <li>{{movie.title}}</li>
-        <li>{{movie.original_title}}</li>
-        <div class="cont-vote">
-          <i v-for="i in vote(movie.vote_average)" class="fas fa-star"></i>
-          <i v-for="i in (5-vote(movie.vote_average))"class="far fa-star"></i>
+    <div class="cont">
+      <header class="head">
+        <img src="img/boolflix.png" @click="clean" alt="">
+        <input type="text" v-model="search" @keyUp.enter="ask">
+      </header>
+      <div class="container">
+        <div class="container-movies" v-for="best in bests" v-if="results.length == 0">
+          <div class="image">
+            <img v-if="best.poster_path" :src="getPoster(best.poster_path)" alt="">
+            <img v-else src="https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png" alt="">
+          </div>
+          <h3>{{best.title}}</h3>
+          <span>{{best.original_title}}</span>
+          <div class="cont-vote">
+            <i v-for="i in vote(best.vote_average)" class="fas fa-star"></i>
+            <i v-for="i in (5-vote(best.vote_average))"class="far fa-star"></i>
+          </div>
+          <div class="flags">
+            <img v-if="flags.includes(best.original_language)" class="flag" :src="getFlag(best.original_language)" alt="">
+            <span v-else>{{best.original_language}}</span>
+          </div>
         </div>
-        <img v-if="flags.includes(movie.original_language)" class="flag" :src="getFlag(movie.original_language)" alt="">
-        <li v-else>{{movie.original_language}}</li>
-      </ul>
-    </div>
-    <div class="series" v-for="show in series">
-      <ul>
-        <img v-if="show.poster_path" :src="getPoster(show.poster_path)" alt="">
-        <li>{{show.name}}</li>
-        <li>{{show.original_name}}</li>
-        <div class="cont-vote">
-          <i v-for="i in vote(show.vote_average)" class="fas fa-star"></i>
-          <i v-for="i in (5-vote(show.vote_average))"class="far fa-star"></i>
+        <div class="container-movies" v-for="result in results" >
+          <div class="image">
+            <img v-if="result.poster_path" :src="getPoster(result.poster_path)" alt="">
+            <img v-else src="https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png" alt="">
+          </div>
+          <h3 v-if="result.title">{{result.title}}</h3>
+          <h3 v-if="result.name">{{result.name}}</h3>
+          <span v-if="result.original_title">{{result.original_title}}</span>
+          <span v-if="result.original_name">{{result.original_name}}</span>    
+          <div class="cont-vote">
+            <i v-for="i in vote(result.vote_average)" class="fas fa-star"></i>
+            <i v-for="i in (5-vote(result.vote_average))"class="far fa-star"></i>
+          </div>
+          <div class="flags">
+            <img v-if="flags.includes(result.original_language)" class="flag" :src="getFlag(result.original_language)" alt="">
+            <span v-else>{{result.original_language}}</span>
+          </div>
         </div>
-        <img v-if="flags.includes(show.original_language)" class="flag" :src="getFlag(show.original_language)" alt="">
-        <li v-else>{{show.original_language}}</li>
-      </ul>
+      </div>
     </div>
   </div>
   <script src="js/main.js"></script>

@@ -4,6 +4,62 @@
   box-sizing: border-box;
 }
 
+.head {
+  width: 80%;
+  margin: 0 auto;
+  height: 10vh;
+}
+.head input {
+  float: right;
+  margin: 20px;
+  padding: 8px;
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  background-color:rgb(26, 25, 25);
+  color: red;
+}
+.head img {
+  width: 12%;
+  margin: 10px;
+  cursor: pointer;
+}
+
 .flag {
   width: 50px;
+}
+
+.cont {
+  background-color: black;
+  min-height: 100vh;
+  max-height: 100%;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container-movies {
+  height: 50vh;
+  width: 200px;
+  background: rgb(32, 32, 32);
+  margin: 20px;
+  color: white;
+}
+.image img {
+  width: 90%;
+  margin: 10px;
+}
+.container-movies h3 {
+  margin: 5px;
+}
+.container-movies span {
+  margin: 5px;
+}
+.cont-vote i {
+  margin: 20px 0;
 }
